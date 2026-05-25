@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html data-wf-domain="www.allmates.ai" data-wf-page="69b8d32b03ce13513e236b99" data-wf-site="69b8d32a03ce13513e236a94" lang="it">
+    
+<head>
+    <meta charset="utf-8"/>
+    <title>Patent Navigator | allmates.ai Italia</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link crossorigin="anonymous" href="https://cdn.prod.website-files.com/69b8d32a03ce13513e236a94/css/allmates-ai.webflow.shared.66d0dc7c4.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.prod.website-files.com/69b8d32a03ce13513e236a94/69b8e3273f2a65e36e325a08_favicon-light-2.png" rel="shortcut icon" type="image/x-icon"/>
+    
+    <!-- Google Fonts per tipografia pulita -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --allmates-gradient: linear-gradient(90deg, #9DE3FD 0%, #70AFED 25%, #888CE9 50%, #B393E3 70%, #E3AFA0 85%, #E28675 100%);
+            --bg-dark: #0b0b0f;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            overflow-x: hidden; 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* FIX MENU TENDINA */
+        .nav-dropdown:hover .w-dropdown-list {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            top: 100% !important; 
+            transition: opacity 0.2s ease;
+        }
+
+        .custom-container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .text-center { text-align: center; }
+        
+        .gradient-text {
+            background: var(--allmates-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Linea sfumata verticale per le features */
+        .accent-line-gradient {
+            width: 3px;
+            height: 28px;
+            background: linear-gradient(to bottom, #E3AFA0, #E28675);
+            display: inline-block;
+            margin-right: 12px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* ----- INIZIO STILI AGGIUNTI PER VIDEO E MATES ----- */
+        
+        /* Stili Video Hero con bordi sfumati */
+        .hero-video-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            /* Crea l'effetto sfumato sopra e sotto il video */
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        }
+        .hero-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4; /* Opacità per far leggere bene il testo bianco */
+        }
+
+        /* Stili Avatar CTA Bottom */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-avatar {
+            position: absolute;
+            border-radius: 50%;
+            /* FIX SCHIACCIAMENTO */
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            z-index: 10; /* Per farli stare SOPRA al testo come da screenshot */
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Posizionamenti esatti come da screenshot 4 */
+        .avatar-1 { width: 170px; height: 170px; top: 30%; right: -5%; box-shadow: 0 0 80px 20px rgba(136, 140, 233, 0.3); animation-delay: 0s; }
+        .avatar-2 { width: 120px; height: 120px; bottom: 0; left: 10%; box-shadow: 0 0 60px 15px rgba(157, 227, 253, 0.2); animation-delay: 2s; }
+        .avatar-3 { width: 100px; height: 100px; top: 5%; left: 5%; box-shadow: 0 0 40px 10px rgba(226, 134, 117, 0.2); animation-delay: 4s; }
+        /* ----- FINE STILI AGGIUNTI ----- */
+
+        .badge-pill {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: rgba(136, 140, 233, 0.1);
+            color: #888CE9;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(136, 140, 233, 0.2);
+        }
+
+        /* Bottoni */
+        .btn-custom {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary { background: var(--allmates-gradient); color: #000; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(136, 140, 233, 0.4); }
+        .btn-secondary { background: transparent; color: var(--text-main); border: 1px solid var(--border-light); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); }
+        .btn-icon { width: 20px; height: 20px; }
+
+        /* Griglie */
+        .grid-3-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .grid-2-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        .grid-4-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+
+        /* Cards */
+        .qlik-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .qlik-card:hover { transform: translateY(-5px); border-color: rgba(136, 140, 233, 0.5); }
+        .qlik-card img { width: 100%; border-radius: 8px; margin-bottom: 24px; }
+        .qlik-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+        .qlik-card p { font-size: 16px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+        /* Stili Timeline */
+        .timeline-step .time { font-size: 16px; font-weight: 800; letter-spacing: 1px; margin-bottom: 8px; display: block; text-transform: uppercase; }
+        .timeline-step .title { font-size: 28px; font-weight: 800; margin-bottom: 12px; color: #fff; line-height: 1.2; letter-spacing: -0.5px; }
+        .timeline-step p { color: var(--text-muted); font-size: 16px; line-height: 1.6; margin: 0; }
+        
+        /* Responsive */
+        @media (max-width: 991px) {
+            .grid-3-cols, .grid-2-cols { grid-template-columns: 1fr; gap: 40px; }
+            .grid-4-cols { grid-template-columns: 1fr 1fr; }
+            .hero-title { font-size: 48px !important; }
+            .floating-avatar { display: none; /* Nasconde gli avatar galleggianti su mobile per pulizia visiva */ }
+        }
+        @media (max-width: 767px) {
+            .grid-4-cols { grid-template-columns: 1fr; }
+            .hero-title { font-size: 36px !important; }
+            .btn-group { flex-direction: column; width: 100%; }
+            .btn-custom { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper" style="background-color: #0b0b0f;">
+
+    <!-- HEADER ORIGINALE -->
+    <section class="navbar" style="position: relative; z-index: 999; background-color: #0b0b0f;">
+        <div class="nav-container">
+            <div class="navbar-wrap">
+                <div class="navbar-desktop-wrap">
+                    <div class="navbar-desktop-left _02">
+                        <a class="navbar-brand w-inline-block" href="/">
+                            <img alt="" class="navbar-brand-logo" height="20" loading="lazy" src="assets/69b8d4064fc6554839667630_allmates.ai-logo-white-colors.svg" width="50"/>
+                        </a>
+                    </div>
+                    <div class="navbar-desktop-center">
+                        <div class="nav-left-menu-wrap">
+                            <a class="nav-menu w-inline-block" href="/platform">
+                                <div class="paragraph-02 nav-text">Platform</div>
+                            </a>
+                            <div class="nav-dropdown w-dropdown" data-delay="0" data-hover="true">
+                                <div class="dropdown-toggle w-dropdown-toggle">
+                                    <div class="icon w-icon-dropdown-toggle"></div>
+                                    <div class="text-block">Ressources</div>
+                                </div>
+                                <nav class="nav-dropdown-list _02 w-dropdown-list">
+                                    <div class="dropdown-list-wrap black">
+                                        <div class="dropdown-wrap small">
+                                            <div class="dropdown-column">
+                                                <div class="dropdown-menu-wrap">
+                                                    <div class="dropdown-menu-list">
+                                                        <a class="dropdown-menu w-inline-block" href="https://help.allmates.ai/en/help">
+                                                            <div class="paragraph-02 dropdown-link-text">Help Center</div>
+                                                            <div class="menu-underline"></div>
+                                                        </a>
+                                                        <a class="dropdown-menu w-inline-block" href="https://feedback.allmates.ai/en/roadmap">
+                                                            <div class="paragraph-02 dropdown-link-text">Roadmap</div>
+                                                            <div class="menu-underline"></div>
+                                                        </a>
+                                                        <a class="dropdown-menu w-inline-block" href="https://feedback.allmates.ai/en/changelog">
+                                                            <div class="paragraph-02 dropdown-link-text">Changelog</div>
+                                                            <div class="menu-underline"></div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="nav-dropdown w-dropdown" data-delay="0" data-hover="true">
+                                <div class="dropdown-toggle w-dropdown-toggle">
+                                    <div class="icon w-icon-dropdown-toggle"></div>
+                                    <div class="text-block">Company</div>
+                                </div>
+                                <nav class="nav-dropdown-list _02 w-dropdown-list">
+                                    <div class="dropdown-list-wrap black">
+                                        <div class="dropdown-wrap small">
+                                            <div class="dropdown-column">
+                                                <div class="dropdown-menu-wrap">
+                                                    <div class="dropdown-menu-list">
+                                                        <a class="dropdown-menu w-inline-block" href="/about">
+                                                            <div class="paragraph-02 dropdown-link-text">About</div>
+                                                            <div class="menu-underline"></div>
+                                                        </a>
+                                                        <a class="dropdown-menu w-inline-block" href="/partners">
+                                                            <div class="paragraph-02 dropdown-link-text">Partners</div>
+                                                            <div class="menu-underline"></div>
+                                                        </a>
+                                                        <a class="dropdown-menu w-inline-block" href="/getdemo">
+                                                            <div class="paragraph-02 dropdown-link-text">Contact Us</div>
+                                                            <div class="menu-underline"></div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                            <a class="nav-menu w-inline-block" href="/pricing">
+                                <div class="paragraph-02 nav-text">Pricing</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navbar-desktop-right _02">
+                        <a class="nav-menu w-inline-block" href="https://app.allmates.ai/">
+                            <div class="paragraph-02 nav-text">Sign in</div>
+                        </a>
+                        <a class="button-03 w-variant-cc5dd8fd-70b5-4808-abb1-9e4187eb6e40 w-inline-block" href="https://www.allmates.ai/getdemo">
+                            <div class="button-03-text-wrap w-variant-cc5dd8fd-70b5-4808-abb1-9e4187eb6e40">
+                                <div class="button-03-text-group">
+                                    <div class="primary-button-text text-black w-variant-cc5dd8fd-70b5-4808-abb1-9e4187eb6e40">Get a demo</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. HERO SECTION -->
+    <section style="padding: 120px 0 80px; position: relative; overflow: hidden;">
+        
+        <!-- VIDEO BACKGROUND -->
+        <div class="hero-video-wrapper">
+            <video autoplay loop muted playsinline>
+                <source src="assets/hero-bg.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div style="position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: var(--allmates-gradient); filter: blur(150px); opacity: 0.1; z-index: 0; border-radius: 50%; pointer-events: none;"></div>
+        
+        <div class="custom-container text-center" style="position: relative; z-index: 1;">
+            <h1 class="heading-13" style="margin-bottom: 30px; color: #fff; font-size: 54px; line-height: 1.1;">
+                Sblocca la Collaborative Intelligence con il nuovo <br><span class="gradient-text">Patent Navigator</span>
+            </h1>
+            <p style="font-size: 20px; color: var(--text-muted); max-width: 760px; margin: 0 auto 48px; line-height: 1.6;">
+                La tutela brevettuale non è mai stata così veloce. Trasforma ore di ricerche manuali in decisioni strategiche istantanee con allmates.ai, l'Agentic Execution Layer per specialisti di Proprietà Intellettuale e dipartimenti R&D.
+            </p>
+            
+            <div class="btn-group" style="display: flex; gap: 16px; justify-content: center; margin-bottom: 80px;">
+                <a href="https://www.allmates.ai/getdemo" class="btn-custom btn-primary">
+                    Richiedi una Demo Gratuita
+                    <img src="assets/69b8d32b03ce13513e236af2_Arrow.svg" alt="Arrow" class="btn-icon">
+                </a>
+                <a href="https://www.allmates.ai/getdemo" class="btn-custom btn-secondary">
+                    Richiedi un IP Audit di 30 giorni
+                    <img src="assets/69b8d32b03ce13513e236af2_Arrow.svg" alt="Arrow" class="btn-icon" style="filter: invert(1);">
+                </a>
+            </div>
+
+            <!-- Dashboard Mockup personalizzata per Patent Navigator -->
+            <img src="assets/patent-navigator-hero-dashboard.avif" alt="Patent Navigator Dashboard" style="width: 100%; max-width: 1000px; border-radius: 16px; border: 1px solid var(--border-light); box-shadow: 0 20px 40px rgba(0,0,0,0.5); display: block; margin: 0 auto;">
+        </div>
+    </section>
+
+    <!-- 2. 3 PICCOLE FEATURES -->
+    <section style="padding: 0 0 100px;">
+        <div class="custom-container grid-3-cols" style="text-align: left;">
+            <div>
+                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                    <span class="accent-line-gradient" style="background: linear-gradient(to bottom, #9DE3FD, #70AFED);"></span>
+                    <h3 style="font-size: 24px; font-weight: 700; margin: 0;">Monitoraggio Autonomo</h3>
+                </div>
+                <p style="color: var(--text-muted); font-size: 16px; line-height: 1.6;">I nostri collaboratori virtuali scansionano costantemente i registri brevettuali globali, liberando i tuoi specialisti.</p>
+            </div>
+            <div>
+                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                    <span class="accent-line-gradient" style="background: linear-gradient(to bottom, #888CE9, #B393E3);"></span>
+                    <h3 style="font-size: 24px; font-weight: 700; margin: 0;">Velocità di Analisi</h3>
+                </div>
+                <p style="color: var(--text-muted); font-size: 16px; line-height: 1.6;">Riduci drasticamente i tempi delle analisi FTO (Freedom to Operate) e di anteriorità, passando da settimane a millisecondi.</p>
+            </div>
+            <div>
+                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                    <span class="accent-line-gradient" style="background: linear-gradient(to bottom, #E3AFA0, #E28675);"></span>
+                    <h3 style="font-size: 24px; font-weight: 700; margin: 0;">Human-in-the-Loop</h3>
+                </div>
+                <p style="color: var(--text-muted); font-size: 16px; line-height: 1.6;">Mantieni il controllo legale. Il collaboratore virtuale prepara analisi e report; tu fornisci l'approvazione strategica finale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. STORY SECTION -->
+    <section style="padding: 100px 0; border-top: 1px solid var(--border-light);">
+        <div class="custom-container grid-2-cols">
+            <div>
+                <div class="badge-pill">Il Futuro della Proprietà Intellettuale</div>
+                <h2 style="font-size: 48px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px;">
+                    Smetti di Consumare il Talento in Infinite Ricerche Manuali
+                </h2>
+                <p style="font-size: 18px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">
+                    I tuoi specialisti Legal e i team R&D perdono settimane intere a incrociare banche dati complesse, mappare i portafogli della concorrenza e strutturare lunghe analisi di brevettabilità.
+                </p>
+                <p style="font-size: 18px; color: var(--text-muted); line-height: 1.6;">
+                    Questo lavoro manuale rallenta il time-to-market, espone a errori di distrazione e toglie tempo prezioso alla vera consulenza strategica ad alto valore aggiunto. Con allmates.ai, l'intuizione del professionista e l'efficacia dell'intelligenza artificiale cooperano senza attriti.
+                </p>
+            </div>
+            <div>
+                <img src="assets/patent-analyst-overwhelmed.avif" alt="Patent Analyst Overwhelmed" style="width: 100%; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MCP INTEGRATION -->
+    <section style="padding: 100px 0; border-top: 1px solid var(--border-light);">
+        <div class="custom-container">
+            <div class="text-center" style="max-width: 800px; margin: 0 auto 64px;">
+                <div class="badge-pill">Precisione e Sicurezza Legale</div>
+                <h2 style="font-size: 48px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px;">Dai un radar infallibile al tuo dipartimento IP</h2>
+                <p style="font-size: 18px; color: var(--text-muted); line-height: 1.6; margin-bottom: 48px;">
+                    Implementiamo collaboratori digitali specializzati che monitorano l'intero patrimonio informativo dei brevetti globali in tempo reale. Quando viene rilevato un trend critico, un brevetto concorrente a rischio o una nuova opportunità tecnologica, il Patent Navigator si attiva immediatamente.
+                </p>
+                <img src="assets/patent-landscape-3d-map.avif" alt="Patent Landscape 3D Map" style="width: 100%; border-radius: 16px; border: 1px solid var(--border-light); box-shadow: 0 20px 40px rgba(0,0,0,0.5); margin-bottom: 64px;">
+                
+                <h2 style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px;">
+                    Analisi Profonda tramite la Comprensione Semantica dei Brevetti
+                </h2>
+                <p style="font-size: 18px; color: var(--text-muted); line-height: 1.6; max-width: 700px; margin: 0 auto;">
+                    Non si tratta di una comune e rigida ricerca per parole chiave. I nostri collaboratori virtuali leggono, comprendono e interpretano la struttura complessa dei claim e delle rivendicazioni brevettuali.
+                </p>
+            </div>
+
+            <div class="grid-3-cols">
+                <div class="qlik-card">
+                    <img src="assets/patent-nlp-semantic-search.avif" alt="Semantic Search NLP">
+                    <h3>Ricerca Semantica & NLP</h3>
+                    <p>Il collaboratore virtuale interroga direttamente il significato profondo dei testi tecnici per trovare corrispondenze invisibili alle normali keyword.</p>
+                </div>
+                <div class="qlik-card">
+                    <img src="assets/patent-whitespace-matrix.avif" alt="White Space Matrix">
+                    <h3>Mappatura dei White Spaces</h3>
+                    <p>Identifica istantaneamente i segmenti tecnologici liberi da privative concorrenti per orientare i tuoi investimenti di R&D.</p>
+                </div>
+                <div class="qlik-card">
+                    <img src="assets/patent-governed-compliance.avif" alt="Enterprise Security">
+                    <h3>Sicurezza & Riservatezza</h3>
+                    <p>allmates.ai garantisce la massima riservatezza dei dati di ricerca e di R&D all'interno del perimetro aziendale blindato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TIMELINE -->
+    <section style="padding: 100px 0; background-color: #111116; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+        <div class="custom-container">
+            <h2 class="text-center" style="font-size: 42px; font-weight: 800; margin-bottom: 64px; letter-spacing: -1px;">Dal Monitoraggio al Vantaggio Competitivo in 30 Giorni</h2>
+            <div class="grid-4-cols">
+                <div class="timeline-step">
+                    <span class="time" style="color: #9DE3FD;">GIORNO 1</span>
+                    <div class="title">Connetti</div>
+                    <p>Imposta le aree tecnologiche e i competitor di interesse nel tuo spazio riservato.</p>
+                </div>
+                <div class="timeline-step">
+                    <span class="time" style="color: #888CE9;">SETTIMANA 1</span>
+                    <div class="title">Audit</div>
+                    <p>Il collaboratore virtuale scansiona i registri storici e mappa l'intero posizionamento dei tuoi concorrenti.</p>
+                </div>
+                <div class="timeline-step">
+                    <span class="time" style="color: #B393E3;">SETTIMANA 2</span>
+                    <div class="title">Proteggi</div>
+                    <p>Attiva il monitoraggio FTO automatico e ricevi i primi alert strategici in tempo reale.</p>
+                </div>
+                <div class="timeline-step">
+                    <span class="time" style="color: #E28675;">GIORNO 30</span>
+                    <div class="title">Ottimizza</div>
+                    <p>Riduci i costi di mantenimento del tuo portafoglio eliminando i brevetti non strategici.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SCENARI REALI -->
+    <section style="padding: 100px 0;">
+        <div class="custom-container">
+            <h2 class="text-center" style="font-size: 42px; font-weight: 800; margin-bottom: 64px; letter-spacing: -1px;">Scenari Reali per il Patent Navigator</h2>
+            
+            <div class="grid-2-cols">
+                <div class="qlik-card" style="background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 100%); position: relative; overflow: hidden; padding: 48px 32px;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--allmates-gradient);"></div>
+                    <h3 style="font-size: 28px; margin-bottom: 8px;">Il Guardiano della FTO</h3>
+                    <div style="font-size: 18px; font-weight: 600; color: #9DE3FD; margin-bottom: 24px;">Prevenzione totale dei rischi di contenzioso</div>
+                    <p style="margin-bottom: 32px;">Analisi continua della libertà di attuazione per azzerare i rischi legali.</p>
+                    
+                    <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; margin-bottom: 16px; border: 1px solid var(--border-light);">
+                        <span style="display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px;">Trigger</span>
+                        Un concorrente deposita all'estero una domanda di brevetto con claim sovrapponibili a un tuo prodotto in sviluppo.
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; border: 1px solid var(--border-light);">
+                        <span style="display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px;">Azione del Collaboratore Virtuale</span>
+                        Rileva istantaneamente l'anteriorità, analizza la sovrapposizione semantica e prepara una bozza di opposizione per il team legale.
+                    </div>
+                </div>
+
+                <div class="qlik-card" style="background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 100%); position: relative; overflow: hidden; padding: 48px 32px;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--allmates-gradient);"></div>
+                    <h3 style="font-size: 28px; margin-bottom: 8px;">Lo Scout Tecnologico</h3>
+                    <div style="font-size: 18px; font-weight: 600; color: #9DE3FD; margin-bottom: 24px;">Riduzione del 50% dei tempi di R&D</div>
+                    <p style="margin-bottom: 32px;">Scansione di soluzioni note e applicabili in nuovi ambiti industriali.</p>
+                    
+                    <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; margin-bottom: 16px; border: 1px solid var(--border-light);">
+                        <span style="display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px;">Trigger</span>
+                        Il team R&D ha bisogno di superare un vincolo ingegneristico relativo a una nuova lega metallica.
+                    </div>
+                    <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; border: 1px solid var(--border-light);">
+                        <span style="display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px;">Azione del Collaboratore Virtuale</span>
+                        Scansiona milioni di brevetti attivi, estrae soluzioni consolidate nel settore aerospaziale e le propone per essere riutilizzate.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SEZIONE VIDEO A TUTTO SCHERMO ORIGINALE (Invariata) -->
+    <section style="position: relative; width: 100%; background-color: #0b0b0f; overflow: hidden; line-height: 0;">
+        <div style="position: relative; width: 100vw; margin: 0 calc(-50vw + 50%); display: flex; justify-content: center; background-color: #0b0b0f;">
+            <video autoplay loop muted playsinline style="width: 100%; height: auto; object-fit: cover; display: block; pointer-events: none;" poster="https://cdn.prod.website-files.com/69b8d32a03ce13513e236a94%2F69d66d63c8410eabe225899a_6271869_Business_People_1280x720_poster.0000000.jpg">
+                <source src="https://cdn.prod.website-files.com/69b8d32a03ce13513e236a94%2F69d66d63c8410eabe225899a_6271869_Business_People_1280x720_mp4.mp4" type="video/mp4"/>
+                <source src="https://cdn.prod.website-files.com/69b8d32a03ce13513e236a94%2F69d66d63c8410eabe225899a_6271869_Business_People_1280x720_webm.webm" type="video/webm"/>
+            </video>
+            <div style="position: absolute; top: -2px; left: 0; right: 0; bottom: -2px; background: linear-gradient(to bottom, #0b0b0f 0%, rgba(11,11,15,0) 20%, rgba(11,11,15,0) 80%, #0b0b0f 100%); pointer-events: none;"></div>
+        </div>
+    </section>
+    
+    <!-- 7. BOTTOM CTA (CON AVATAR FLUTTUANTI DINAMICI) -->
+    <section class="text-center cta-section" style="padding: 120px 0 160px;">
+        <div class="custom-container" style="position: relative;">
+            
+            <!-- Avatar fluttuanti originali con effetto hover -->
+            <img src="assets/69bdbfbc0e5f9de7b3f914d6_Mate-feed-3.png" alt="Collaboratore Virtuale 1" class="floating-avatar avatar-3">
+            <img src="assets/69bdbfbc30c9fab3c26e7323_mate-feed-5.png" alt="Collaboratore Virtuale 2" class="floating-avatar avatar-2">
+            <img src="assets/69bdc41cd21ba2363275a65c_mate-feed-13.png" alt="Collaboratore Virtuale 3" class="floating-avatar avatar-1">
+
+            <!-- Testo CTA principale -->
+            <div style="position: relative; z-index: 5;">
+                <p style="font-size: 16px; font-weight: 600; margin-bottom: 24px; color: #fff;">
+                    <span style="background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 4px; border: 1px solid var(--border-light);">
+                        Attiva il tuo Patent Navigator <strong class="gradient-text" style="font-weight: 700;">in pochi minuti</strong>.
+                    </span>
+                </p>
+                
+                <h2 style="font-size: 54px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -2px;">
+                    Smetti di Leggere Brevetti. <br>Inizia a Guidare la Strategia.
+                </h2>
+                <p style="font-size: 20px; color: var(--text-muted); max-width: 600px; margin: 0 auto 48px; line-height: 1.6;">
+                    Unisciti ai professionisti della Proprietà Intellettuale che stanno passando dall'analisi manuale passiva alla tutela proattiva basata su collaboratori intelligenti.
+                </p>
+                
+               <a href="https://www.allmates.ai/getdemo" class="btn-custom btn-primary" style="padding: 20px 40px; font-size: 18px;">
+                    Richiedi la tua Demo Gratuita
+                    <img src="assets/69b8d32b03ce13513e236af2_Arrow.svg" alt="Arrow" class="btn-icon">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER ORIGINALE CON AGGIUNTA RESELLER ESCLUSIVO rAIsing -->
+    <section class="footer" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 60px; padding-bottom: 40px; background-color: #0b0b0f;">
+        <div class="container">
+            <div class="footer-wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+                <div class="footer-left" style="max-width: 300px;">
+                    <img alt="Allmates Logo" class="image" src="assets/69b8d4064fc6554839667630_allmates.ai-logo-white-colors.svg" style="margin-bottom: 20px;"/>
+                    <div class="paragraph-02 text-grey">Harness the collective power of AI to elevate your team's productivity.</div>
+                </div>
+                
+                <div class="footer-right" style="display: flex; gap: 60px; flex-wrap: wrap;">
+                    <div class="footer-column">
+                        <div class="footer-menu-wrap">
+                            <div class="paragraph-02" style="color: #fff; font-weight: bold; margin-bottom: 15px;">Platform</div>
+                            <div class="footer-menu-list">
+                                <a class="paragraph-02 footer-link-2 text-grey" href="/platform" style="text-decoration: none; display: block; margin-bottom: 10px;">Features</a>
+                                <a class="paragraph-02 footer-link-2 text-grey" href="/pricing" style="text-decoration: none; display: block; margin-bottom: 10px;">Pricing</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-menu-wrap">
+                            <div class="paragraph-02" style="color: #fff; font-weight: bold; margin-bottom: 15px;">Ressources</div>
+                            <div class="footer-menu-list">
+                                <a class="paragraph-02 footer-link-2 text-grey" href="https://help.allmates.ai/en/help" style="text-decoration: none; display: block; margin-bottom: 10px;">Help Center</a>
+                                <a class="paragraph-02 footer-link-2 text-grey" href="https://feedback.allmates.ai/en/roadmap" style="text-decoration: none; display: block; margin-bottom: 10px;">Roadmap</a>
+                                <a class="paragraph-02 footer-link-2 text-grey" href="https://feedback.allmates.ai/en/changelog" style="text-decoration: none; display: block; margin-bottom: 10px;">Changelog</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-menu-wrap">
+                            <div class="paragraph-02" style="color: #fff; font-weight: bold; margin-bottom: 15px;">Company</div>
+                            <div class="footer-menu-list">
+                                <a class="paragraph-02 footer-link-2 text-grey" href="/about" style="text-decoration: none; display: block; margin-bottom: 10px;">About</a>
+                                <a class="paragraph-02 footer-link-2 text-grey" href="/partners" style="text-decoration: none; display: block; margin-bottom: 10px;">Partners</a>
+                                <a class="paragraph-02 footer-link-2 text-grey" href="/getdemo" style="text-decoration: none; display: block; margin-bottom: 10px;">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-menu-wrap">
+                            <div class="paragraph-02" style="color: #fff; font-weight: bold; margin-bottom: 15px;">Legal</div>
+                            <div class="footer-menu-list">
+                                <a class="paragraph-02 footer-link-2 text-grey" href="/cookie-policy" style="text-decoration: none; display: block; margin-bottom: 10px;">Cookie Policy</a>
+                                <a class="paragraph-02 footer-link-2 text-grey" href="/privacy-policy" style="text-decoration: none; display: block; margin-bottom: 10px;">Privacy policy</a>
+                                <a class="paragraph-02 footer-link-2 text-grey" href="/terms-and-conditions" style="text-decoration: none; display: block; margin-bottom: 10px;">Terms and conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright-wrap" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                <div class="paragraph-02 copyright-text text-grey">© 2026 allmates.ai - All rights reserved</div>
+                <div class="paragraph-02 copyright-text text-grey" style="margin-top: 10px;">
+                    <strong style="color: #70AFED;">rAIsing</strong> - Master Reseller e Distributore Esclusivo allmates per l'Italia
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- SCRIPT WEBFLOW -->
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript" crossorigin="anonymous"></script>
+<script src="https://assets.website-files.com/69b8d32a03ce13513e236a94/js/webflow.js" type="text/javascript"></script>
+
+</body>
+</html>
